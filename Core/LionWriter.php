@@ -2,6 +2,9 @@
 
 error_reporting(E_ALL);
 
+require(LION_CORE.DS.'LionWriterFunctions.php');
+require(LION_CORE.DS.'LionWriterView.php');
+
 require(LION_CORE.DS.'vendors'.DS.'markdown.php');
 
 class LionWriter
@@ -14,11 +17,17 @@ class LionWriter
 		'view' => 'default',
 		'layout' => 'default',
 	);
-	public static $formats = '/^[A-Za-z0-9\.-]+(\.md|\.txt|\.html)/i';
+	public static $formats = array(
+		'.md' => 'Markdown',
+		'.txt' => 'Regular text',
+		'.html' => 'HTML',
+	);
+	public static $formats_pattern = '/^[A-Za-z0-9\.\-_]+(\.md|\.txt|\.html)/i';
+	public static $key_value_pattern = '/^([A-Za-z0-9\.\-_]+):(.*)/i';
 
 	private function __construct() { }
 
-	public static function loadPage($filename)
+	public static function loadPage($filename, $format = 'HTML')
 	{
 		$page = array();
 		$content = file_get_contents($filename);
@@ -26,46 +35,44 @@ class LionWriter
 		$lines = explode("\n", $content);
 		foreach($lines as $index => $line)
 		{
-			if(strpos($line,':')===false) // change for preg_match
+			if(!preg_match(self::$key_value_pattern, $line, $matches))
 				break;
 
-			list($key, $value) = explode(':', $line);
-
-			$page[trim($key)] = trim($value);
+			$page[$matches[1]] = trim($matches[2]);
 			unset($lines[$index]);
 		}
+
 		if(!isset($page['title']))
 			$page['title'] = 'Unknow title';
+
 		if(!isset($page['author']))
 			$page['author'] = 'Unknow author';
 
 		$content = trim(implode("\n", $lines));
 
-		$file = str_replace(dirname($filename).DS, '', $filename);
-		preg_match(self::$formats, $file, $matches);
-		
-		if($matches[1]=='.md')
+		switch($format)
 		{
-			$page['content'] = Markdown($content);
-		}
-		elseif($matches[1]=='.txt')
-		{
-			$lines = explode("\n", $content);
-			foreach($lines as $index => $line)
-				$lines[$index] = '<p>'.$line.'</p>';
-			$page['content'] = implode("\n", $lines);
-		}
-		else
-			$page['content'] = $content;
+			case 'Markdown':
+				$page['content'] = Markdown($content);
+				break;
 
+			case 'Regular text':
+				$lines = explode("\n", $content);
+				foreach($lines as $index => $line)
+					$lines[$index] = '<p>'.$line.'</p>';
+				$page['content'] = implode("\n", $lines);
+				break;
+
+			default: // HTML
+				$page['content'] = $content;
+				break;
+		}
 		return $page;
 	}
 	public static function loadView($route)
 	{
-		echo 'loadView';
-		pr($route);
 		$foldername = LION_CONTENT.DS.$route['content'];
-		
+
 		$View = new LionWriterView($route['view'], $route['layout']);
 
 		if(is_dir($foldername))
@@ -74,7 +81,7 @@ class LionWriter
 		    $dir = dir($foldername);
 			while(false !== ($file = $dir->read()))
 			{
-				if($file==='.' || $file==='..' || !preg_match(self::$formats, $file))
+				if($file==='.' || $file==='..' || !preg_match(self::$formats_pattern, $file))
 					continue;
 
 				$files[] = $file;
@@ -82,29 +89,54 @@ class LionWriter
 			$dir->close();
 
 			arsort($files);
+			
+			if(!isset($route['limit']) || !is_numeric($route['limit']))
+				$route['limit'] = false;
 
+			$n = 0;
 			$pages = array();
-			foreach($files as $n => $file)
+			foreach($files as $file)
 			{
-				if(isset($route['limit']) && $route['limit'] >= $n)
+				if(is_numeric($route['limit']) && $n >= $route['limit'])
 					break;
+				
+				preg_match(self::$formats_pattern, $file, $matches);
 
-				$pages[] = self::loadPage($foldername.$file);
+				$pages[] = self::loadPage($foldername.$file, self::$formats[$matches[1]]);
+				$n++;
 			}
 
 			$View->set('pages', $pages);
 			$View->render();
 		}
-		elseif(file_exists($filename = $foldername.'.md'))
-		{
-			$page = self::loadPage($filename);
-			
-			$View->set('page', $page);
-			$View->render();
-		}
 		else
 		{
-			$View->renderError404();
+			if(file_exists($foldername))
+			{
+				$components = explode(DS, $foldername);
+				preg_match(self::$formats_pattern, $components[count($components)-1], $matches);
+
+				$page = self::loadPage($foldername, self::$formats[$matches[1]]);
+			}
+			else
+			{
+				foreach(self::$formats as $ext => $format)
+				{
+					if(file_exists($filename = $foldername.$ext))
+					{
+						$page = self::loadPage($filename, $format);
+						break;
+					}
+				}
+			}
+
+			if(isset($page))
+			{
+				$View->set('page', $page);
+				$View->render();
+			}			
+			else
+				$View->renderError404();
 		}
 
 		return false;
@@ -116,12 +148,59 @@ class LionWriter
 	}
 	public static function queryForDynamicContent()
 	{
-		echo 'queryForDynamicContent';
+		$parameters = explode('/', self::$__path);
+		
+		$default_variables = array(
+			':Y' => '\d{4}',
+			':m' => '\d{2}',
+			':d' => '\d{2}',
+			':title' => '[A-Za-z0-9\.\-_]+',
+		);
+		
+		$filename_pattern = '/^(:Y)-(:m)-(:d)\-(:title)(\.md|\.txt|\.html)/i';
+
+		foreach(self::$__dynamic_routes as $pattern => $route)
+		{
+			$query_variables = explode('/', $pattern);
+			
+			$variables = $default_variables;
+
+			foreach($query_variables as $index => $variable)
+			{
+				if(isset($variables[$variable]) && isset($parameters[$index]))
+					$variables[$variable] = $parameters[$index];
+			}
+			$query = str_replace(array_keys($variables), $variables, $filename_pattern);
+
+			$foldername = LION_CONTENT.DS.$route['content'];
+
+			if(is_dir($foldername))
+			{
+				$located = false;
+			    
+			    $dir = dir($foldername);
+				while(false !== ($file = $dir->read()))
+				{
+					if($file==='.' || $file==='..' || !preg_match($query, $file))
+						continue;
+					
+					$located = true;
+					break;
+				}
+				$dir->close();
+
+				if($located)
+				{
+					$route['content'] = $route['content'].$file;
+					return $route;
+				}
+			}
+		}
+
 		return false;
 	}
 	public static function queryForStaticContent()
 	{
-		echo 'queryForStaticContent';
 		$content = substr(self::$__path, 1);
 		$filename = LION_CONTENT.DS.$content.'.md';
 
@@ -136,9 +215,6 @@ class LionWriter
 
 		self::$__path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
 		
-		pr(self::$__path);
-		pr(self::$__static_routes);
-
 		if(isset(self::$__static_routes[self::$__path]))
 		{
 			self::loadView(self::$__static_routes[self::$__path]);
@@ -155,7 +231,6 @@ class LionWriter
 		{
 			self::loadError404();
 		}
-		pr(self::$__dynamic_routes);
 	}
 	public static function route($path, $options = array())
 	{
@@ -169,59 +244,5 @@ class LionWriter
 			self::$__dynamic_routes[$path] = $options;
 		else
 			self::$__static_routes[$path] = $options;
-	}
-}
-
-class LionWriterView
-{
-	private $__rendering = false;
-	private $__layout = 'default';
-	private $__view = 'default';
-	private $__data = array();
-	
-	public function __construct($view, $layout)
-	{
-		$this->__view = $view;
-		$this->__layout = $layout;
-	}
-	public function set($key, $value)
-	{
-		$this->__data[$key] = $value;
-	}
-	public function render()
-	{
-		echo '<hr />View rendered!';
-		pr($this->__data);
-		echo ' <hr />';
-	}
-	public function element($view)
-	{
-	}
-	public function renderError404()
-	{
-		//header('HTTP/1.0 404 Not Found');
-		echo 'error 404';
-	}
-	public function renderError403()
-	{
-		//header('HTTP/1.0 403 Forbbiden');
-		echo 'error 403';
-	}
-}
-
-if(!function_exists('pr'))
-{
-	function pr($mixed)
-	{
-		echo '<pre>'.print_r($mixed, true).'</pre>';
-	}
-}
-if(!function_exists('vd'))
-{
-	function vd($mixed)
-	{
-		echo '<pre>';
-		var_dump($mixed);
-		echo '</pre>';
 	}
 }
