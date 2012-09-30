@@ -24,7 +24,7 @@
  * you must setup a special view to show properly.
  */
 	LionWriter::route('/', array(
-		'content' 	=> 'articles/*',
+		'content' 	=> 'articles/',
 		'view' 		=> 'home',
 		'layout' 	=> 'default',
 	));
