@@ -27,6 +27,16 @@
 		'content' 	=> 'articles/',
 		'view' 		=> 'home',
 		'layout' 	=> 'default',
+		'limit'		=> 3
+	));
+/**
+ * If “limit” is undefined or false, it will be fetch for all documents that
+ * can be found on the content folder.
+ */
+	LionWriter::route('/archive', array(
+		'content' 	=> 'articles/',
+		'view' 		=> 'home',
+		'layout' 	=> 'default',
 	));
 /**
  * For each article we are connecting every request with the format '/:title/:Y/:m'
@@ -35,7 +45,7 @@
  * token.
  */
 	LionWriter::route('/:title/:Y/:m', array(
-		'content' 	=> 'articles/{query}.md',
+		'content' 	=> 'articles/',
 		'view' 		=> 'default',
 	));
 /**
