@@ -35,8 +35,6 @@
  */
 	LionWriter::route('/archive', array(
 		'content' 	=> 'articles/',
-		'view' 		=> 'home',
-		'layout' 	=> 'default',
 	));
 /**
  * For each article we are connecting every request with the format '/:title/:Y/:m'
