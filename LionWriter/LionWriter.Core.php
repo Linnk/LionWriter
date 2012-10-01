@@ -66,7 +66,7 @@ class LionWriter
 	{
 		$foldername = LION_CONTENT.DS.$route['content'];
 
-		$View = new LionWriterView($route['view'], $route['layout']);
+		$View = new LionWriterTheme($route['view'], $route['layout']);
 
 		if(is_dir($foldername))
 		{
@@ -143,7 +143,7 @@ class LionWriter
 	}
 	public static function loadError404()
 	{
-		$View = new LionWriterView();
+		$View = new LionWriterTheme();
 		$View->renderError404();
 		return false;
 	}
