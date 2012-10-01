@@ -28,7 +28,6 @@ if(!defined('DS'))
  * a directory layout other than the way it is distributed.
  * When using custom settings be sure to use the DS and do not add a trailing DS.
  */
-
 /**
  * The full path to the directory which holds 'app', WITHOUT a trailing DS.
  *
@@ -36,9 +35,14 @@ if(!defined('DS'))
 if (!defined('LION_ROOT'))
 	define('LION_ROOT', dirname(dirname(__FILE__)));
 /**
+ * If you do not want (or can't) use mod_rewrite, set next constant to false.
+ */
+if(!defined('LION_REWRITE'))
+	define('LION_REWRITE', true);
+/**
  * The absolute path to the “LionWriter” directory, WITHOUT a trailing DS.
  */
-define('LION_CORE', LION_ROOT.DS.'Core');
+define('LION_CORE', LION_ROOT.DS.'LionWriter');
 /**
  * The absolute path to the “Content” directory, WITHOUT a trailing DS.
  */
@@ -53,13 +57,12 @@ define('LION_SITE', LION_ROOT.DS.'Site');
 define('LION_WEBROOT', dirname(__FILE__));
 
 /**
+ *
  * Editing below this line should NOT be necessary.
  * Change at your own risk.
  *
  */
-if(!include(LION_CORE.DS.'LionWriter.php'))
+if(!include(LION_CORE.DS.'LionWriter.bootstrap.php'))
 {
 	trigger_error('LionWriter core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in WWW/webroot/index.php. It should point to the directory containing your '.DS.'LionWriter core directory and your '.DS.'vendors root directory.', E_USER_ERROR);
 }
-
-LionWriter::dispatch();

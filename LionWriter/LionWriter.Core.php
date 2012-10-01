@@ -1,12 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-
-require(LION_CORE.DS.'LionWriterFunctions.php');
-require(LION_CORE.DS.'LionWriterView.php');
-
-require(LION_CORE.DS.'vendors'.DS.'markdown.php');
-
 class LionWriter
 {
 	private static $__path;
