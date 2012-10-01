@@ -17,6 +17,7 @@ class LionWriter
 	);
 	public static $formats_pattern = '/^[A-Za-z0-9\.\-_]+(\.md|\.txt|\.html)/i';
 	public static $key_value_pattern = '/^([A-Za-z0-9\.\-_]+):(.*)/i';
+	public static $filename_pattern = '/^(\d{4})-(\d{2})-(\d{2})\-([A-Za-z0-9\.\-_]+)(\.md|\.txt|\.html)/i';
 
 	private function __construct() { }
 
@@ -85,6 +86,12 @@ class LionWriter
 			
 			if(!isset($route['limit']) || !is_numeric($route['limit']))
 				$route['limit'] = false;
+			
+			foreach(self::$__dynamic_routes as $dynamic_route)
+			{
+				if($dynamic_route['content']===$route['content'])
+					$permalink = $dynamic_route['path'];
+			}
 
 			$n = 0;
 			$pages = array();
@@ -93,9 +100,16 @@ class LionWriter
 				if(is_numeric($route['limit']) && $n >= $route['limit'])
 					break;
 				
-				preg_match(self::$formats_pattern, $file, $matches);
+				preg_match(self::$filename_pattern, $file, $matches);
 
-				$pages[] = self::loadPage($foldername.$file, self::$formats[$matches[1]]);
+				$page = self::loadPage($foldername.$file, self::$formats[$matches[5]]);
+				
+				if(isset($permalink))
+				{
+					unset($matches[0],$matches[5]);
+					$page['permalink'] = str_replace(array(':Y',':m',':d',':title'), $matches, $permalink);
+				}
+				$pages[] = $page;
 				$n++;
 			}
 
