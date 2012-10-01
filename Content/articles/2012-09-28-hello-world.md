@@ -2,7 +2,7 @@ title: Hello world!
 author: Juan I. Benavides
 date: 2012-09-28
 excerpt: Hello world entry.
-keyworkds: hello,world
+keywords: hello,world
 
 # Hello World
 
