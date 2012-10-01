@@ -21,6 +21,9 @@ class LionWriterView
 	}
 	private function renderLayout($content_for_layout)
 	{
+		if(!file_exists(LION_SITE.DS.'layouts'.DS.$this->__layout.'.php'))
+			$this->renderMissingLayout();
+
 		extract($this->__data);
 		require(LION_SITE.DS.'layouts'.DS.$this->__layout.'.php');
 	}
@@ -30,6 +33,9 @@ class LionWriterView
 			trigger_error('LionWriterView is currently renderizing, you can\'t call render twice.', E_USER_ERROR);
 		
 		$this->__hasRendered = true;
+
+		if(!file_exists(LION_SITE.DS.'views'.DS.$this->__view.'.php'))
+			$this->renderMissingView();
 
 		ob_start();
 		extract($this->__data);
@@ -42,6 +48,9 @@ class LionWriterView
 	}
 	public function element($element)
 	{
+		if(!file_exists(LION_SITE.DS.'elements'.DS.$element.'.php'))
+			return 'Missing element file: '.$element_filename;
+		
 		ob_start();
 		extract($this->__data);
 		require(LION_SITE.DS.'elements'.DS.$element.'.php');
@@ -62,8 +71,20 @@ class LionWriterView
 		}
 		else
 		{
-			exit("<h1>Not Found</h1><p>The requested URL " . $_SERVER["REQUEST_URI"] . " was not found on this server.</p><hr>");
+			echo "<h3>Not Found</h3><p>The requested URL {$_SERVER["REQUEST_URI"]} was not found on this server.</p><hr>";
 		}
+	}
+	public function renderMissingView()
+	{
+		header('HTTP/1.0 404 Not Found');
+		
+		exit("<h3>Missing view</h3><p>The view “{$this->__view}.php” did not exists. Create the file Site/views/{$this->__view}.php to fix this error.</p><hr>");
+	}
+	public function renderMissingLayout()
+	{
+		header('HTTP/1.0 404 Not Found');
+		
+		exit("<h3>Missing layout</h3><p>The layout “{$this->__layout}.php” did not exists. Create the file Site/layouts/{$this->__layout}.php to fix this error.</p><hr>");
 	}
 }
 
