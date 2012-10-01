@@ -14,4 +14,3 @@
 	<p>I didn't recieve anything :( </p>
 
 <?php endif; ?>
-<hr />
