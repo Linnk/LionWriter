@@ -126,6 +126,13 @@ class LionWriter
 			if(isset($page))
 			{
 				$View->set('page', $page);
+				$View->set('title_for_layout', $page['title']);
+
+				if(isset($page['excerpt']))
+					$View->set('description_for_layout', $page['excerpt']);
+				if(isset($page['keywords']))
+					$View->set('keywords_for_layout', $page['keywords']);
+
 				$View->render();
 			}			
 			else
@@ -136,7 +143,8 @@ class LionWriter
 	}
 	public static function loadError404()
 	{
-		echo 'error 404';
+		$View = new LionWriterView();
+		$View->renderError404();
 		return false;
 	}
 	public static function queryForDynamicContent()
