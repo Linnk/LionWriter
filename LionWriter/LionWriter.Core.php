@@ -2,6 +2,7 @@
 
 class LionWriter
 {
+	private static $__shouldDispatch = true;
 	private static $__path;
 	private static $__static_routes;
 	private static $__dynamic_routes;
@@ -47,6 +48,8 @@ class LionWriter
 		switch($format)
 		{
 			case 'Markdown':
+				require_once(LION_CORE.DS.'vendors'.DS.'markdown.php');
+
 				$page['content'] = Markdown($content);
 				break;
 
@@ -159,7 +162,6 @@ class LionWriter
 	{
 		$View = new LionWriterTheme();
 		$View->renderError404();
-		return false;
 	}
 	public static function queryForDynamicContent()
 	{
@@ -224,23 +226,30 @@ class LionWriter
 
 		return false;
 	}
+	public static function prepareForDispatch()
+	{
+		self::$__path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
+	}
+	public static function doNotDispatch()
+	{
+		self::$__shouldDispatch = false;
+	}
 	public static function dispatch()
 	{
-		require(LION_SITE.DS.'configuration.php');
+		if(self::$__shouldDispatch === false)
+			return;
 
-		self::$__path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
-		
-		if(isset(self::$__static_routes[self::$__path]))
+		if($route = self::get(self::$__path))
 		{
-			self::loadView(self::$__static_routes[self::$__path]);
+			self::loadView($route);
 		}
-		elseif($dynamic_route = self::queryForDynamicContent())
+		elseif($route = self::queryForDynamicContent())
 		{
-			self::loadView($dynamic_route);
+			self::loadView($route);
 		}
-		elseif($static_route = self::queryForStaticContent())
+		elseif($route = self::queryForStaticContent())
 		{
-			self::loadView($static_route);
+			self::loadView($route);
 		}
 		else
 		{
@@ -259,5 +268,13 @@ class LionWriter
 			self::$__dynamic_routes[$path] = $options;
 		else
 			self::$__static_routes[$path] = $options;
+	}
+	public static function get($path)
+	{
+		if(isset(self::$__static_routes[$path]))
+		{
+			return self::$__static_routes[self::$__path];
+		}
+		return false;
 	}
 }

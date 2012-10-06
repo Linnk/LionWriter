@@ -6,7 +6,9 @@ require(LION_CORE.DS.'LionWriter.functions.php');
 require(LION_CORE.DS.'LionWriter.Core.php');
 require(LION_CORE.DS.'LionWriter.Theme.php');
 
-require(LION_CORE.DS.'vendors'.DS.'markdown.php');
+LionWriter::prepareForDispatch();
+
+require(LION_WEBROOT.DS.'configuration.php');
 
 if(file_exists(LION_SITE.DS.'bootstrap.php'))
 	require(LION_SITE.DS.'bootstrap.php');
