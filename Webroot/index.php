@@ -48,13 +48,13 @@ define('LION_CORE', LION_ROOT.DS.'LionWriter');
  */
 define('LION_CONTENT', LION_ROOT.DS.'Content');
 /**
- * The absolute path to the “Views” directory, WITHOUT a trailing DS.
- */
-define('LION_SITE', LION_ROOT.DS.'Site');
-/**
  * The absolute path to the “Webroot” directory, WITHOUT a trailing DS.
  */
 define('LION_WEBROOT', dirname(__FILE__));
+/**
+ * The absolute path to the “Webroot/themes” directory, WITHOUT a trailing DS.
+ */
+define('LION_SITE', LION_WEBROOT.DS.'themes'.DS.'CleanCanvas');
 
 /**
  *
