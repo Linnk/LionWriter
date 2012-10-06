@@ -12,53 +12,36 @@ class LionWriterView
 		$this->__view = $view;
 		$this->__layout = $layout;
 	}
+	protected function _hasRendered()
+	{
+		return $this->__hasRendered ? true : false;
+	}
+	protected function _startRender()
+	{
+		$this->__hasRendered = true;
+	}
+	protected function _getFilenameForView()
+	{
+		return LION_SITE.DS.'views'.DS.$this->__view.'.php';
+	}
+	protected function _getFilenameForLayout()
+	{
+		return LION_SITE.DS.'layouts'.DS.$this->__layout.'.php';
+	}
+	protected function _hasLayout()
+	{
+		return ($this->__layout === null || $this->__layout === false) ? false : true;
+	}
 	public function set($key, $value)
 	{
-		if($this->__hasRendered === true)
+		if($this->_hasRendered())
 			trigger_error('LionWriterView is currently renderizing, you can\'t modify the data.', E_USER_ERROR);
 
 		$this->__data[$key] = $value;
 	}
-	private function renderLayout($content_for_layout)
+	public function get()
 	{
-		if(!file_exists(LION_SITE.DS.'layouts'.DS.$this->__layout.'.php'))
-			$this->renderMissingLayout();
-
-		extract($this->__data);
-		require(LION_SITE.DS.'layouts'.DS.$this->__layout.'.php');
-	}
-	public function render()
-	{
-		if($this->__hasRendered === true)
-			trigger_error('LionWriterView is currently renderizing, you can\'t call render twice.', E_USER_ERROR);
-		
-		$this->__hasRendered = true;
-
-		if(!file_exists(LION_SITE.DS.'views'.DS.$this->__view.'.php'))
-			$this->renderMissingView();
-
-		ob_start();
-		extract($this->__data);
-		require(LION_SITE.DS.'views'.DS.$this->__view.'.php');
-
-		$content_for_layout = ob_get_contents();
-		ob_end_clean();
-
-		$this->renderLayout($content_for_layout);
-	}
-	public function element($element)
-	{
-		if(!file_exists(LION_SITE.DS.'elements'.DS.$element.'.php'))
-			return 'Missing element file: '.$element_filename;
-		
-		ob_start();
-		extract($this->__data);
-		require(LION_SITE.DS.'elements'.DS.$element.'.php');
-		
-		$element_output = ob_get_contents();
-		ob_end_clean();
-
-		return $element_output;
+		return $this->__data;
 	}
 	public function renderError404()
 	{
