@@ -4,14 +4,6 @@ require(LION_CORE.DS.'LionWriter.View.php');
 
 class LionWriterTheme extends LionWriterView
 {
-	private function renderLayout($content_for_layout)
-	{
-		if(!file_exists($this->_getFilenameForLayout()))
-			$this->renderMissingLayout();
-
-		extract($this->get());
-		require($this->_getFilenameForLayout());
-	}
 	public function render()
 	{
 		if($this->_hasRendered())
@@ -32,7 +24,11 @@ class LionWriterTheme extends LionWriterView
 			$content_for_layout = ob_get_contents();
 			ob_end_clean();
 			
-			$this->renderLayout($content_for_layout);
+			if(!file_exists($this->_getFilenameForLayout()))
+				$this->renderMissingLayout();
+	
+			extract($this->get());
+			require($this->_getFilenameForLayout());
 		}
 		else
 			require($this->_getFilenameForView());
