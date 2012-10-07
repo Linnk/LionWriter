@@ -3,6 +3,7 @@
 class LionWriter
 {
 	private static $__shouldDispatch = true;
+	private static $__theme = null;
 	private static $__path;
 	private static $__static_routes;
 	private static $__dynamic_routes;
@@ -284,5 +285,14 @@ class LionWriter
 			return self::$__static_routes[self::$__path];
 		}
 		return false;
+	}
+	public static function setTheme($theme_name)
+	{
+		if(is_null(self::$__theme) && is_string($theme_name))
+			self::$__theme = $theme_name;
+	}
+	public static function theme()
+	{
+		return self::$__theme;
 	}
 }

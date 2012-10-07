@@ -54,7 +54,7 @@ define('LION_WEBROOT', dirname(__FILE__));
 /**
  * The absolute path to the “Webroot/themes” directory, WITHOUT a trailing DS.
  */
-define('LION_SITE', LION_WEBROOT.DS.'themes'.DS.'CleanCanvas');
+define('LION_THEMES', LION_WEBROOT.DS.'themes');
 
 /**
  *

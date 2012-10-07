@@ -21,7 +21,7 @@
 /**
  * First, set up the theme LionWritter will use for your site.
  */
-	//LionWriter::setTheme('CleanCanvas');
+	LionWriter::setTheme('CleanCanvas');
 	/*
 	 *	Lets use the favicon inside the theme. It's good idea use it that way.
 	 *
@@ -44,6 +44,7 @@
 		'content' 	=> 'articles/',
 		'view' 		=> 'home',
 		'layout' 	=> 'default',
+		'summary'	=> 200,
 		'limit'		=> 3
 	));
 /**
@@ -52,6 +53,7 @@
  */
 	LionWriter::route('/archive', array(
 		'content' 	=> 'articles/',
+		'order'		=> 'asc',
 	));
 /**
  * For each article we are connecting every request with the format '/:title/:Y/:m'
@@ -67,7 +69,7 @@
  * For individual pages like the “About page” you can setup this way. The layout &
  * view will be “default” and the content will be specifically “about-me-page.md”.
  */
-	LionWriter::route('/about', array('content' => 'about-me-page.md'));
+	LionWriter::route('/about', array('content' => 'about.md'));
 /**
  * Setup a default view is very usefull for automatic loading content.
  * If someone make a request to '/contact' path, it will try to find a
