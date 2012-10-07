@@ -49,14 +49,17 @@ class LionWriterTheme extends LionWriterView
 	}
 	public function link($html, $magic_url, $attributes = array())
 	{
+		$attributes = $attributes + array(
+			'href' => $this->URLFromMagicURL($magic_url)
+		);
+
 		$attributes_html = $this->htmlFromAttributes($attributes);
-		$url = $this->URLFromMagicURL($magic_url);
 
 		return '<a'.$attributes_html.'>'.$html.'</a>';
 	}
 	public function css($css_name, $attributes = array())
 	{
-		$url = $this->URLFromMagicURL('/css/'.$css_name.'.css');
+		$url = $this->URLFromMagicURL(LION_THEME.DS.'css'.DS.$css_name.'.css');
 		
 		$attributes = $attributes + array(
 			'rel' => 'stylesheet',
@@ -70,7 +73,7 @@ class LionWriterTheme extends LionWriterView
 	}
 	public function javascript($js_name, $attributes = array())
 	{
-		$url = $this->URLFromMagicURL('/js/'.$js_name.'.js');
+		$url = $this->URLFromMagicURL(LION_THEME.DS.'js'.DS.$js_name.'.js');
 		
 		$attributes = $attributes + array(
 			'type' => 'text/javascript',
@@ -83,7 +86,7 @@ class LionWriterTheme extends LionWriterView
 	}
 	public function image($image_filename, $attributes = array())
 	{
-		$url = $this->URLFromMagicURL('/img/'.$image_filename);
+		$url = $this->URLFromMagicURL(LION_THEME.DS.'img'.DS.$image_filename);
 		
 		$attributes = $attributes + array(
 			'border' => '0',
