@@ -3,7 +3,7 @@ author: Juan I. Benavides
 date: 2012-10-05
 keywords: integer, tortor, elit
 
-Integer tortor elit, *blandit* nec feugiat non, gravida varius augue. Pellentesque posuere nibh semper lorem malesuada rhoncus. Sed vitae tellus diam, eu bibendum felis. Etiam tempus, tellus sed auctor volutpat, arcu leo tincidunt velit, quis scelerisque nisi mi quis nisl. Morbi suscipit dictum purus imperdiet faucibus. Nam tincidunt eleifend lorem in tristique.~
+Integer tortor elit, *blandit* nec feugiat non, gravida varius augue. Pellentesque posuere nibh semper lorem malesuada rhoncus. Sed vitae tellus diam, eu bibendum felis. Etiam tempus, tellus sed auctor volutpat, arcu leo tincidunt velit, quis scelerisque nisi mi quis nisl. Morbi suscipit dictum purus imperdiet faucibus. Nam tincidunt eleifend lorem in tristique.
 
 Vestibulum velit leo, *dignissim* *a* *laoreet* *et*, mollis vitae erat. Nunc aliquam, ipsum in ornare porta, risus ligula lobortis est, ut fermentum eros arcu eu sapien. Praesent eget accumsan ante. Pellentesque hendrerit justo risus. Ut dictum convallis iaculis. Praesent condimentum tempus dolor, a molestie erat congue ac. Vivamus varius tincidunt pretium. Fusce tristique sem eget neque varius rhoncus.
 
