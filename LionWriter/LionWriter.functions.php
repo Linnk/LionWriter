@@ -17,3 +17,15 @@ if(!function_exists('vd'))
 		echo '</pre>';
 	}
 }
+function substract_summary($content, $lenght)
+{
+	if(strlen($content) <= $lenght)
+		return content;
+	
+	$content = substr($content, 0, $lenght);
+	
+	if(($whitespace_position = strrpos($content, ' ')) !== false)
+		$content = substr($content, 0, $whitespace_position);
+
+	return $content;
+}

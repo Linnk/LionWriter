@@ -10,6 +10,7 @@ class LionWriter
 		'content' => null,
 		'view' => 'default',
 		'layout' => 'default',
+		'summary' => 150,
 	);
 	public static $formats = array(
 		'.md' => 'Markdown',
@@ -44,7 +45,6 @@ class LionWriter
 			$page['author'] = 'Unknow author';
 
 		$content = trim(implode("\n", $lines));
-
 		switch($format)
 		{
 			case 'Markdown':
@@ -55,8 +55,10 @@ class LionWriter
 
 			case 'Regular text':
 				$lines = explode("\n", $content);
+
 				foreach($lines as $index => $line)
 					$lines[$index] = '<p>'.$line.'</p>';
+
 				$page['content'] = implode("\n", $lines);
 				break;
 
@@ -64,6 +66,7 @@ class LionWriter
 				$page['content'] = $content;
 				break;
 		}
+		
 		return $page;
 	}
 	public static function loadView($route)
@@ -85,7 +88,8 @@ class LionWriter
 			}
 			$dir->close();
 
-			arsort($files);
+			if(!isset($route['order']) || strtolower($route['order'])==='desc')
+				arsort($files);
 			
 			if(!isset($route['limit']) || !is_numeric($route['limit']))
 				$route['limit'] = false;
@@ -112,6 +116,8 @@ class LionWriter
 					unset($matches[0],$matches[5]);
 					$page['permalink'] = str_replace(array(':Y',':m',':d',':title'), $matches, $permalink);
 				}
+				$page['excerpt'] = substract_summary(strip_tags($page['content']), $route['summary']);
+
 				$pages[] = $page;
 				$n++;
 			}
@@ -142,6 +148,8 @@ class LionWriter
 
 			if(isset($page))
 			{
+				$page['excerpt'] = substract_summary(strip_tags($page['content']), $route['summary']);
+
 				$View->set('page', $page);
 				$View->set('title_for_layout', $page['title']);
 
