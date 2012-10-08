@@ -94,6 +94,9 @@ body.mobile{
 	text-align: center;
 }
 
+.content{
+	text-align: justify;
+}
 .content p{
 	margin: 1em 0;
 }
