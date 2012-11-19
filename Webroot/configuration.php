@@ -45,7 +45,7 @@
 		'view' 		=> 'home',
 		'layout' 	=> 'default',
 		'summary'	=> 200,
-		'limit'		=> 3
+		'limit'		=> 5
 	));
 /**
  * If “limit” is undefined or false, it will be fetch for all documents that
@@ -54,6 +54,7 @@
 	LionWriter::route('/archive', array(
 		'content' 	=> 'articles/',
 		'order'		=> 'asc',
+		'view' 		=> 'archive',
 	));
 /**
  * For each article we are connecting every request with the format '/:title/:Y/:m'
@@ -63,15 +64,15 @@
  */
 	LionWriter::route('/:title/:Y/:m', array(
 		'content' 	=> 'articles/',
-		'view' 		=> 'default',
 	));
 /**
- * For individual pages like the “About page” you can setup this way. The layout &
- * view will be “default” and the content will be specifically “about-me-page.md”.
+ * For individual pages like the “About page” you can setup this way. The layout will
+ * be “default” and the content will be specifically “about-me-page.md”.
+ * The default view is “page” view.
  */
 	LionWriter::route('/about', array('content' => 'about.md'));
 /**
- * Setup a default view is very usefull for automatic loading content.
+ * Setup a default “page” view is very usefull for automatic loading content.
  * If someone make a request to '/contact' path, it will try to find a
  * contact.md file and try render it with the default layout and default view.
  */
