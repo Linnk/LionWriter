@@ -29,6 +29,9 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
 	width: 640px;
 	margin: 5em auto 3em auto;
 }
+.single-page .profile{
+	margin-top: 3em;
+}
 .single-page .profile .avatar{
 	margin-right: 1em;
 }
