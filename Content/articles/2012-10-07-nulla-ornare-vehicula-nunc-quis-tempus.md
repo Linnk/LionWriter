@@ -1,5 +1,6 @@
 title: Nulla ornare vehicula nunc quis tempus
 author: Juan I. Benavides
+email: linnk87@gmail.com
 date: 2012-10-07
 
 Nulla ornare vehicula nunc quis tempus. Quisque ut faucibus eros. Donec eget auctor urna. Nullam sit amet felis justo, ut ornare lorem. Donec congue imperdiet urna, auctor molestie neque luctus pretium. Integer in nisl at ligula feugiat congue. Pellentesque fringilla, urna a ullamcorper convallis, diam quam scelerisque velit, sollicitudin consectetur ante eros in sem. Donec non orci dui, et fermentum lectus. Curabitur ornare laoreet aliquam.
