@@ -1,1 +1,1 @@
-<p><em>LionWriter</em> &amp; <em>CleanCanvas</em> were written by Juan I. Benavides. © 2012</p>
+<p>Powered by <em>LionWriter</em> © 2012</p>
