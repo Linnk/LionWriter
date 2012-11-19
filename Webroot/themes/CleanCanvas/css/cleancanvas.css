@@ -1,0 +1,51 @@
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
+	color:#505040;
+}
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
+	color:#606050;
+}
+.sections{
+	padding-top: 2.9em;
+}
+
+#footer{
+	font-size: 11pt;
+	text-align: center;
+	color: #999;
+}
+
+.single-page{
+	width: 640px;
+	margin: 5em auto 3em auto;
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+}
+ 
+/* Desktop enough */
+@media (min-width: 980px) {
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+}
+ 
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+	.single-page{
+		margin: 3em auto 2em auto;	
+	}
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 670px) {
+	.single-page{
+		width: 100%;
+		margin: 2em auto 1em auto;	
+	}
+}
+ 
+/* Landscape phones and down */
+@media (max-width: 480px) {
+}
