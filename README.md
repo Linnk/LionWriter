@@ -6,4 +6,4 @@ There is other systems like [Jekyll](https://github.com/mojombo/jekyll) written 
 
 The next steps are Dropbox integration and create a nice portrait page. If you notice that this design it is inspired from **Medium** and you have taste for *user* *interfaces*, give me a hand to make it better. :)
 
-I need to write the code documentation and the user-manual. But you can see the project running on the website [Lion Writer Project](http://lionwriter.org/).
+I need to write the code documentation and the user-manual, but you can see the project running on the website [Lion Writer Project](http://lionwriter.org/).
