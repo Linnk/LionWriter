@@ -8,7 +8,7 @@
 	<div class="page-preview">
 		<h4><a href="<?php echo $page['permalink'] ?>"><?php echo $page['title'] ?></a></h4>
 		<p class="page-excerpt"><?php echo $page['excerpt'] ?>…</p>
-		<p class="page-date muted"><?php echo $page['date'] ?></p>
+		<p class="muted"><em><?php echo $page['date'] ?></em></p>
 	</div>
 	</div>
 	<?php endforeach; ?>
