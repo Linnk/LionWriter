@@ -4,19 +4,36 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
 	color:#606050;
 }
-.sections{
-	padding-top: 2.9em;
-}
 
 #footer{
 	font-size: 11pt;
 	text-align: center;
 	color: #999;
 }
-
+.page-preview{
+	font-size: 11pt;
+	height: 280px;
+	padding: 0.5em 1em;
+	background-color: #fff;
+	box-shadow: 0px 1px 6px #ddd;
+	margin-bottom: 2em;
+}
+.page-preview:hover{
+	box-shadow: 0px 1px 6px #aaa;
+}
+.page-preview .page-excerpt{
+	height: 155px;
+	overflow: hidden;
+}
 .single-page{
 	width: 640px;
 	margin: 5em auto 3em auto;
+}
+.single-page .profile .avatar{
+	margin-right: 1em;
+}
+.single-page .profile .info{
+	margin-left: 100px;
 }
 
 /* Large desktop */
@@ -25,10 +42,16 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
  
 /* Desktop enough */
 @media (min-width: 980px) {
+	.sections{
+		padding-top: 2.9em;
+	}
 }
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
+	.sections{
+		padding-top: 2.9em;
+	}
 }
  
 /* Landscape phone to portrait tablet */
