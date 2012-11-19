@@ -9,7 +9,7 @@ class LionWriter
 	private static $__dynamic_routes;
 	private static $__default_options = array(
 		'content' => null,
-		'view' => 'default',
+		'view' => 'page',
 		'layout' => 'default',
 		'summary' => 150,
 	);
