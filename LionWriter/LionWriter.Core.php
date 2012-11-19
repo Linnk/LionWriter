@@ -21,6 +21,7 @@ class LionWriter
 	public static $formats_pattern = '/^[A-Za-z0-9\.\-_]+(\.md|\.txt|\.html)/i';
 	public static $key_value_pattern = '/^([A-Za-z0-9\.\-_]+):(.*)/i';
 	public static $filename_pattern = '/^(\d{4})-(\d{2})-(\d{2})\-([A-Za-z0-9\.\-_]+)(\.md|\.txt|\.html)/i';
+	public static $date_pattern = '/^(\d{4})-(\d{2})-(\d{2})/i';
 
 	private function __construct() { }
 
@@ -40,10 +41,17 @@ class LionWriter
 		}
 
 		if(!isset($page['title']))
-			$page['title'] = 'Unknow title';
+			$page['title'] = 'Unknown title';
 
 		if(!isset($page['author']))
-			$page['author'] = 'Unknow author';
+			$page['author'] = 'Unknown author';
+
+		if(isset($page['date']) && preg_match(self::$date_pattern, $page['date'], $matches))
+		{
+			$page['date'] = date('F',mktime(0,0,0,$matches[2],$matches[3],$matches[1])).' '.$matches[3].', '.$matches[1];
+		}
+		else
+			$page['date'] = 'Unknown date';
 
 		$content = trim(implode("\n", $lines));
 		switch($format)
