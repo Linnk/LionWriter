@@ -17,7 +17,7 @@ if(!function_exists('vd'))
 		echo '</pre>';
 	}
 }
-function substract_summary($content, $lenght, $p = true)
+function substract_summary($content, $lenght, $p = false)
 {
 	if(strlen($content) <= $lenght)
 		return content;
