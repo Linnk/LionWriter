@@ -44,7 +44,7 @@
 		'content' 	=> 'articles/',
 		'view' 		=> 'home',
 		'layout' 	=> 'default',
-		'summary'	=> 650,
+		'summary'	=> 500,
 		'limit'		=> 5
 	));
 /**
