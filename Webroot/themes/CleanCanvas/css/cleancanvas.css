@@ -4,26 +4,57 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
 	color:#404030;
 }
-
 #footer{
 	font-size: 11pt;
 	text-align: center;
 	color: #999;
 }
 .page-preview{
-	font-size: 11pt;
-	height: 280px;
-	padding: 0.5em 1em;
 	background-color: #fff;
 	box-shadow: 0px 1px 6px #ddd;
-	margin-bottom: 2em;
+	height: 485px;
+	margin-bottom: 20px;
+	overflow: hidden;
+	position: relative;
 }
 .page-preview:hover{
 	box-shadow: 0px 1px 6px #aaa;
 }
-.page-preview .page-excerpt{
-	height: 155px;
+.page-preview .page-image{
+	height: 250px;
 	overflow: hidden;
+	background-color: gray;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.page-preview .page-excerpt{
+	font-size: 11pt;
+	height: 415px;
+	padding: 0.5em 1em;
+	margin-bottom: 2em;
+	text-overflow:ellipsis;
+	overflow: hidden;
+}
+.page-preview .page-excerpt.with-image{
+	height: 167px;
+}
+.page-preview .page-excerpt h4{
+	line-height: 1.5em;
+	font-size: 14pt;
+	height: 30px;
+	overflow:hidden;
+	text-overflow: ellipsis;
+}
+.page-preview .page-footer{
+	font-size: 10pt;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background-color: white;
+	border-top: 1px solid #eee;
+	padding: 0.5em 1em;
+	width: 100%;
 }
 .single-page{
 	width: 640px;
