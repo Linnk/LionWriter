@@ -11,7 +11,7 @@ class LionWriter
 		'content' => null,
 		'view' => 'page',
 		'layout' => 'default',
-		'summary' => 150,
+		'summary' => 500,
 	);
 	public static $formats = array(
 		'.md' => 'Markdown',
