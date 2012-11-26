@@ -3,6 +3,7 @@ author: Juan I. Benavides
 email: linnk87@gmail.com
 date: 2012-10-05
 keywords: integer, tortor, elit
+image: globos-1.jpg
 
 Integer tortor elit, *blandit* nec feugiat non, gravida varius augue. Pellentesque posuere nibh semper lorem malesuada rhoncus. Sed vitae tellus diam, eu bibendum felis. Etiam tempus, tellus sed auctor volutpat, arcu leo tincidunt velit, quis scelerisque nisi mi quis nisl. Morbi suscipit dictum purus imperdiet faucibus. Nam tincidunt eleifend lorem in tristique.
 

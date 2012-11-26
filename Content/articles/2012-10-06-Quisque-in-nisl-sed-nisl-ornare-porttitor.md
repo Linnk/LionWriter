@@ -2,6 +2,7 @@ title: Quisque in nisl sed nisl ornare porttitor
 author: Juan I. Benavides
 email: linnk87@gmail.com
 date: 2012-10-06
+image: globos-2.jpg
 
 Quisque in nisl sed nisl ornare porttitor. Duis aliquam consectetur lorem a vehicula. Curabitur viverra bibendum est ut feugiat. Integer in velit a nisl ornare porta. Pellentesque felis justo, viverra sagittis aliquam fringilla, dignissim nec nulla. Aliquam erat volutpat. Nulla a feugiat nulla.
 
