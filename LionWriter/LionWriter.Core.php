@@ -245,7 +245,7 @@ class LionWriter
 	}
 	public static function prepareForDispatch()
 	{
-		self::$__path = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
+		self::$__path = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
 	}
 	public static function doNotDispatch()
 	{
