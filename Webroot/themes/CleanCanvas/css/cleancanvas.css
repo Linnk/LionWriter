@@ -30,7 +30,7 @@ body{
 	box-shadow: 0px 1px 6px #aaa;
 	text-decoration: none;
 }
-.page-preview .page-image{
+.page-preview .page-image-preview{
 	height: 200px;
 	overflow: hidden;
 	background-color: gray;
