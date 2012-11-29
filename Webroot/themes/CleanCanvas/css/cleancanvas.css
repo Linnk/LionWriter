@@ -4,6 +4,10 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a{
 h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
 	color:#404030;
 }
+body{
+	padding-left: 0;
+	padding-right: 0;
+}
 #footer{
 	font-size: 11pt;
 	text-align: center;
@@ -69,9 +73,12 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
 .page-preview .page-footer em{
 	margin-right: 1em;
 }
+.single-page, .page-image{
+	width: 600px;
+	margin: 2em auto 3em auto;
+}
 .single-page{
-	width: 640px;
-	margin: 3em auto 3em auto;
+	padding: 0 20px;
 }
 .single-page.with-image{
 	margin-top: 1em;
@@ -114,9 +121,12 @@ h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover{
 
 /* Landscape phone to portrait tablet */
 @media (max-width: 670px) {
-	.single-page{
-		width: 100%;
+	.single-page, .page-image{
+		width: auto;
 		margin: 0em auto 1em auto;	
+	}
+	.single-page{
+		padding: 0 20px;
 	}
 }
  
