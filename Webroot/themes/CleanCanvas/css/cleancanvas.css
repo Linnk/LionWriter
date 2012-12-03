@@ -83,6 +83,9 @@ body{
 .single-page.with-image{
 	margin-top: 1em;
 }
+.single-page blockquote p{
+	margin-bottom: 1em;
+}
 .single-page .profile{
 	margin-top: 3em;
 }
