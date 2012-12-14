@@ -120,6 +120,9 @@ body{
 	.single-page{
 		margin: 1em auto 2em auto;	
 	}
+	#footer, #header, .home-page, .archive-page{
+		margin: 0 20px;
+	}
 }
 
 /* Landscape phone to portrait tablet */

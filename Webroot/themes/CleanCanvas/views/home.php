@@ -1,6 +1,6 @@
 <?php echo $this->element('header') ?>
 
-<div class="row row-static">
+<div class="row row-static home-page">
 	<?php foreach($pages as $page): ?>
 	<div class="span4">
 	<a class="page-preview" href="<?php echo $page['permalink'] ?>">
