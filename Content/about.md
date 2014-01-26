@@ -1,8 +1,5 @@
-title: About
-author: Juan I. Benavides
-email: linnk87@gmail.com
-date: 2012-09-30
-keywords: about page
+
+# Title
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula semper sodales. Cras porttitor porttitor massa ut sodales. Duis ultrices est id risus euismod sed lacinia orci ullamcorper.
 

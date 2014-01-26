@@ -1,4 +1,4 @@
-<?php if(isset($page['image'])): ?>
+<?php pr($page); if(isset($page['image'])): ?>
 <div class="page-image">
 	<img src="/files/<?php echo $page['image'] ?>" class="img " width="100%"/>
 </div>

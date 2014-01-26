@@ -243,6 +243,32 @@ class LionWriter
 
 		return false;
 	}
+	public static function queryForBinaryFile()
+	{
+		$filename = LION_CONTENT.DS.substr(self::$__path, 1);
+
+		if(file_exists($filename))
+		{
+			$name = substr($filename, strrpos($filename, DS) + 1);
+			$ext = substr($name, strrpos($name, '.') + 1);
+			$options = array(
+				'file' => $name,
+				'ext' => $ext,
+				'path' => $filename,
+				'type' => 'mime/type'
+			);
+			if($ext === 'png')
+				$options['type'] = 'image/png';
+			elseif($ext === 'jpg' || $ext === 'jpeg')
+				$options['type'] = 'image/jpg';
+			elseif($ext === 'gif')
+				$options['type'] = 'image/gif';
+				
+			return $options;
+		}
+
+		return false;
+	}
 	public static function prepareForDispatch()
 	{
 		self::$__path = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
@@ -268,11 +294,50 @@ class LionWriter
 		{
 			self::loadView($route);
 		}
+		elseif($route = self::queryForBinaryFile())
+		{
+			self::loadFile($route);
+		}
 		else
 		{
 			self::loadError404();
 		}
 	}
+	public static function loadFile($route)
+	{
+		if($route['type'] === 'image/png')
+		{
+			$image = imagecreatefrompng($route['path']);
+			header('Content-Type: image/png');
+			imagepng($image);
+			imagedestroy($image);
+		}
+		elseif($route['type'] === 'image/jpg')
+		{
+			$image = imagecreatefromjpeg($route['path']);
+			header('Content-Type: image/png');
+			imagejpeg($image);
+			imagedestroy($image);
+		}
+		elseif($route['type'] === 'image/gif')
+		{
+			$image = imagecreatefromgif($route['path']);
+			header('Content-Type: image/gif');
+			imagegif($image);
+			imagedestroy($image);
+		}
+		else
+		{
+			header("Cache-Control: public");
+			header("Content-Description: File Transfer");
+			header("Content-Disposition: attachment; filename={$route['file']}");
+			header("Content-Type: application/octet-stream");
+			header("Content-Transfer-Encoding: binary");
+			header('Content-Length: ' . filesize($route['path']));
+			readfile($route['path']);
+		}
+		exit;
+	}	
 	public static function route($path, $options = array())
 	{
 		$options = $options + self::$__default_options;

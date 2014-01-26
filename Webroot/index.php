@@ -59,10 +59,10 @@ define('LION_THEMES', LION_WEBROOT.DS.'themes');
 /**
  *
  * Editing below this line should NOT be necessary.
- * Change at your own risk.
+ * Change it at your own risk.
  *
  */
 if(!include(LION_CORE.DS.'LionWriter.bootstrap.php'))
 {
-	trigger_error('LionWriter core could not be found. Check the value of CAKE_CORE_INCLUDE_PATH in WWW/webroot/index.php. It should point to the directory containing your '.DS.'LionWriter core directory and your '.DS.'vendors root directory.', E_USER_ERROR);
+	trigger_error('LionWriter core could not be found. Check the value of LION_CORE in WWW/Webroot/index.php. It should point to the directory containing your '.DS.'LionWriter core directory and your '.DS.'vendors root directory.', E_USER_ERROR);
 }
