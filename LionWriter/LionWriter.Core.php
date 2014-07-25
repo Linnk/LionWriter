@@ -57,9 +57,12 @@ class LionWriter
 		switch($format)
 		{
 			case 'Markdown':
-				require_once(LION_CORE.DS.'vendors'.DS.'markdown.php');
+				require_once(LION_CORE.DS.'vendors'.DS.'parsedown'.DS.'Parsedown.php');
+				require_once(LION_CORE.DS.'vendors'.DS.'parsedown'.DS.'ParsedownExtra.php');
 
-				$page['content'] = Markdown($content);
+				$parsedown = new ParsedownExtra();
+
+				$page['content'] = $parsedown->text($content);
 				break;
 
 			case 'Regular text':

@@ -21,56 +21,66 @@
 /**
  * First, set up the theme LionWritter will use for your site.
  */
-	LionWriter::setTheme('CleanCanvas');
-	/*
-	 *	Lets use the favicon inside the theme. It's good idea use it that way.
-	 *
-	 *	Both /Content & /Webroot/files are content, they should be in the same
-	 *	folder, but the problem is that /Content must be private and the files
-	 *	public. It is good idea keep it separate?
-	 *
-	 *	The configuration.php file must be in /Webroot because is general propose
-	 *	file. But what is it defined inside, have affect in the theme selected. So,
-	 *	what now?
-	 *
-	 *	The bootstrap.php file definitly must be in its folder theme.
-	 */
+LionWriter::setTheme('bluWorksDocs');
+
+/*
+ *	Lets use the favicon inside the theme. It's good idea use it that way.
+ *
+ *	Both /Content & /Webroot/files are content, they should be in the same
+ *	folder, but the problem is that /Content must be private and the files
+ *	public. It is good idea keep it separate?
+ *
+ *	The configuration.php file must be in /Webroot because is general propose
+ *	file. But what is it defined inside, have affect in the theme selected. So,
+ *	what now?
+ *
+ *	The bootstrap.php file definitly must be in its folder theme.
+ */
 /**
  * Here, we are connecting '/' (base path) to all the 'articles' in
  * the Content, but this will fetch all in sort descending. That's why
  * you must setup a special view to show properly.
  */
-	LionWriter::route('/', array(
-		'content' 	=> 'articles/',
-		'view' 		=> 'home',
-		'layout' 	=> 'default',
-		'summary'	=> 500,
-		'limit'		=> 5
-	));
+/*
+LionWriter::route('/', array(
+	'content' 	=> 'articles/',
+	'view' 		=> 'index',
+	'layout' 	=> 'default',
+	'summary'	=> 500,
+	'limit'		=> 5
+));
+*/
+LionWriter::route('/', array(
+	'content' 	=> 'articles/',
+	'order'		=> 'asc',
+	'view' 		=> 'archive',
+));
+
 /**
  * If “limit” is undefined or false, it will be fetch for all documents that
  * can be found on the content folder.
  */
-	LionWriter::route('/archive', array(
-		'content' 	=> 'articles/',
-		'order'		=> 'asc',
-		'view' 		=> 'archive',
-	));
+LionWriter::route('/archive', array(
+	'content' 	=> 'articles/',
+	'order'		=> 'asc',
+	'view' 		=> 'archive',
+));
+
 /**
  * For each article we are connecting every request with the format '/:title/:Y/:m'
  * with a query in articles folder inside the Content. Your articles must have this
  * name format: “Y-m-d-title.md”. Doesn't matter that the request don't use every
  * token.
  */
-	LionWriter::route('/:title/:Y/:m', array(
-		'content' 	=> 'articles/',
-	));
+LionWriter::route('/:title/:Y/:m', array('content' 	=> 'articles/'));
+
 /**
  * For individual pages like the “About page” you can setup this way. The layout will
  * be “default” and the content will be specifically “about-me-page.md”.
  * The default view is “page” view.
  */
-	LionWriter::route('/about', array('content' => 'about.md'));
+LionWriter::route('/about', array('content' => 'about.md'));
+
 /**
  * Setup a default “page” view is very usefull for automatic loading content.
  * If someone make a request to '/contact' path, it will try to find a

@@ -5,7 +5,6 @@
 <?php endif; ?>
 
 <div class="single-page <?php echo isset($page['image']) ? 'with-image' : '' ?>">
-	<h1><?php echo $page['title'] ?></h1>
 	<?php echo $page['content'] ?>
 	
 	<?php echo $this->element('page-author') ?>
