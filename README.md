@@ -1,9 +1,9 @@
 # Lion Writer project.
 
-Lion Writer is a static content management for hipster hackers and/or anyone who hates Wordpress —or similar software— enough to learn this “pure” style of writting.
+Databases are too mainstream. This is a static content management for hipster hackers and/or anyone who hates Wordpress —or similar— enough.
 
-There is other systems like [Jekyll](https://github.com/mojombo/jekyll) written on Ruby or [Pelican](https://github.com/ametaireau/pelican) written on Python. These are great static blog generators and those are great languages (very popular on the hacker community, unlike PHP), but a lot of us we actually have at least one or several servers running the old and good Apache/PHP.
+Users for manage the articles? We rather not. VIM is so more vintage.
 
-The next steps are Dropbox integration and create a nice portrait page. If you notice that the design is inspired from **Medium** and you have taste for *user* *interfaces*, give me a hand to make it better. :)
+There are other systems like [Jekyll](https://github.com/mojombo/jekyll) written on Ruby or [Pelican](https://github.com/ametaireau/pelican) written on Python. These are great static blog generators and those are great languages (very popular on the hacker community), but a lot of us have at least one or several servers running the old and good Apache/PHP. So, what the heck.
 
-I need to write the code documentation and the user-manual, but you can see the project running on the website [Lion Writer Project](http://lionwriter.org/).
+The first time I tried to mimic the *Medium* design, but now I think this will be usefull for documentation websites, so I'm making the necessary changes.
