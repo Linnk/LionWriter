@@ -1,8 +1,12 @@
+# [LionWriter](/)
 
-# Title
+LionWriter is a static content management for hipster hackers and anyone who also think Wordpress is too much for something that should be simpler. This is a file-based CMS.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vehicula semper sodales. Cras porttitor porttitor massa ut sodales. Duis ultrices est id risus euismod sed lacinia orci ullamcorper.
+## Philosophy
 
-Donec viverra sollicitudin scelerisque. Ut in augue non eros tristique dignissim semper vel ligula. Etiam nec faucibus arcu. Vivamus dapibus, justo sit amet ultricies lacinia, ligula nisi consequat ante, quis molestie erat metus scelerisque lacus. Aenean congue suscipit adipiscing. Nulla tempor aliquet consectetur.
-
-Aenean mauris neque, consequat malesuada facilisis vitae, pretium eu turpis. Etiam ac consequat arcu.
+- Databases are too mainstream.
+- WYSIWYG editor? We rather not.
+- Awesome for git.
+- Easy to install (drag and drop).
+- KISS principle.
+- Themes support.

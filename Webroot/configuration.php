@@ -21,7 +21,7 @@
 /**
  * First, set up the theme LionWritter will use for your site.
  */
-LionWriter::setTheme('bluWorksDocs');
+LionWriter::setTheme('CleanCanvas');
 
 /*
  *	Lets use the favicon inside the theme. It's good idea use it that way.
