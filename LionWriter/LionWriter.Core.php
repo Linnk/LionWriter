@@ -28,8 +28,8 @@ class LionWriter
 	public static function loadPage($filename, $format = 'HTML')
 	{
 		$page = array();
-		$content = file_get_contents($filename);
-		
+		$content = file_exists($filename) ? file_get_contents($filename) : '';
+
 		$lines = explode("\n", $content);
 		foreach($lines as $index => $line)
 		{

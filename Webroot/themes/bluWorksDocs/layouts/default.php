@@ -16,9 +16,7 @@
 </html>
 <body id="LionWriter" class="real">
 
-	<div class="container">
 <?php echo $content_for_layout ?>
-	</div>
 
 </body>
 </html>

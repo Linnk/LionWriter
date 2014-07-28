@@ -1,5 +1,5 @@
-<hr />
-
-<div id="footer" class="container">
-	<p>Powered by <a href="http://github.com/Linnk/LionWriter">LionWriter</a> © 2012</p>
+<div class="footer">
+	<div class="container">
+		<p class="text-muted">bluWorks © 2014 escrito por Linnk Benavides.</p>
+	</div>
 </div>

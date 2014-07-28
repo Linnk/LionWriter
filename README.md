@@ -1,11 +1,19 @@
-# Lion Writer project.
+# LionWriter
 
-Databases are too mainstream.
+LionWriter is a static content management for hipster hackers and anyone who also think Wordpress is too much for something that should be simpler. This is a file-based CMS.
 
-This is a static content management for hipster hackers and/or anyone who hates Wordpress —or similar— enough.
+## Philosophy
 
-WYSIWYG editor? We rather not. VIM is so more vintage.
+- Databases are too mainstream.
+- WYSIWYG editor? We rather not.
+- Awesome for git.
+- Easy to install (drag and drop).
+- KISS principle.
+- Themes support.
 
-Other systems like [Jekyll](https://github.com/mojombo/jekyll), which is written on Ruby and there is [Pelican](https://github.com/ametaireau/pelican), written on Python. These are great static blog generators and those are great languages (very popular on the hacker community), but a lot of us have at least one or several servers running the old and good Apache/PHP. So, what the heck.
+## Getting Started
 
-The first time I tried to mimic the *Medium* design, but now I think this will be usefull for documentation websites, so I'm making the necessary changes.
+## Alternatives
+
+There are alternatives like [Jekyll](https://github.com/mojombo/jekyll) or [Pelican](https://github.com/ametaireau/pelican). These are great static blog generators written in great programming languages, but a lot of us have at least one or several servers running the old and good Apache/PHP. So, what the heck.
+

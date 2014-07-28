@@ -4,6 +4,15 @@ require(LION_CORE.DS.'LionWriter.View.php');
 
 class LionWriterTheme extends LionWriterView
 {
+	public function getContent($page_name, $format = 'Markdown')
+	{
+		$page = $this->getPage($page_name);
+		return $page['content'];
+	}
+	public function getPage($page_name, $format = 'Markdown')
+	{
+		return LionWriter::loadPage(LION_CONTENT.DS.$page_name, $format);
+	}
 	public function render()
 	{
 		if($this->_hasRendered())

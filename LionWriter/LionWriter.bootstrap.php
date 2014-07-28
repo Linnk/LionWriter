@@ -13,7 +13,7 @@ require(LION_WEBROOT.DS.'configuration.php');
 define('LION_SITE', LION_WEBROOT.DS.'themes'.DS.LionWriter::theme());
 define('LION_THEME', DS.'themes'.DS.LionWriter::theme());
 
-if(file_exists(LION_SITE.DS.'bootstrap.php'))
-	require(LION_SITE.DS.'bootstrap.php');
+if(file_exists(LION_SITE.DS.'configuration.php'))
+	require(LION_SITE.DS.'configuration.php');
 
 LionWriter::dispatch();

@@ -34,26 +34,19 @@ LionWriter::setTheme('bluWorksDocs');
  *	file. But what is it defined inside, have affect in the theme selected. So,
  *	what now?
  *
- *	The bootstrap.php file definitly must be in its folder theme.
+ *	The configuration.php file definitly must be in its folder theme.
  */
 /**
  * Here, we are connecting '/' (base path) to all the 'articles' in
  * the Content, but this will fetch all in sort descending. That's why
  * you must setup a special view to show properly.
  */
-/*
 LionWriter::route('/', array(
 	'content' 	=> 'articles/',
 	'view' 		=> 'index',
 	'layout' 	=> 'default',
 	'summary'	=> 500,
-	'limit'		=> 5
-));
-*/
-LionWriter::route('/', array(
-	'content' 	=> 'articles/',
-	'order'		=> 'asc',
-	'view' 		=> 'archive',
+	'limit'		=> 3
 ));
 
 /**
